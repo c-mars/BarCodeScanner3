@@ -20,7 +20,15 @@ public class MainActivity extends Activity {
     TextView textView;
     @OnClick(R.id.b) void b(){
         textView.setText("clicked");
-        new IntentIntegrator(this).initiateScan();
+//        new IntentIntegrator(this).initiateScan();
+
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setCaptureActivity(AnyOrientationCaptureActivity.class);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+        integrator.setPrompt("Scan something");
+        integrator.setOrientationLocked(false);
+        integrator.setBeepEnabled(false);
+        integrator.initiateScan();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
